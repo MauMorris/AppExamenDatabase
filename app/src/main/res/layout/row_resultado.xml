@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        card_view:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/fab_margin">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_id_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="id" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_nombre_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/nombre_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_apellidos_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/apellidos_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_direccion_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/direccion_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_telefono_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/telefono_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_mail_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/mail_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_fecha_nacimiento_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/fecha_nac_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_estado_civil_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/edo_civil_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_usuario_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/usuario_text" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_contraseña_resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/contraseña_text" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
