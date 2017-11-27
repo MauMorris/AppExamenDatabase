@@ -18,25 +18,13 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
 
     private static final String LOG_TAG = CapturaDatosActivity.class.getSimpleName();
 
-    private TextInputEditText nombre;
-    private TextInputEditText apellidos;
-    private TextInputEditText direccion;
-    private TextInputEditText telefono;
-    private TextInputEditText mail;
-    private TextInputEditText fecha_nacimiento;
-    private TextInputEditText edo_civil;
-    private TextInputEditText usuario;
-    private TextInputEditText contraseña;
+    private TextInputEditText nombre, apellidos, direccion;
+    private TextInputEditText telefono, mail, fecha_nacimiento;
+    private TextInputEditText edo_civil, usuario, contraseña;
 
-    private TextInputLayout til_nombre;
-    private TextInputLayout til_apellidos;
-    private TextInputLayout til_direccion;
-    private TextInputLayout til_telefono;
-    private TextInputLayout til_mail;
-    private TextInputLayout til_fecha_nacimiento;
-    private TextInputLayout til_edo_civil;
-    private TextInputLayout til_usuario;
-    private TextInputLayout til_contraseña;
+    private TextInputLayout til_nombre, til_apellidos, til_direccion;
+    private TextInputLayout til_telefono, til_mail, til_fecha_nacimiento;
+    private TextInputLayout til_edo_civil, til_usuario, til_contraseña;
 
     private FloatingActionButton fab;
 
