@@ -1,12 +1,15 @@
 package com.example.idscomercial.examen1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.idscomercial.examen1.callbacks.MyIntentListener;
 import com.example.idscomercial.examen1.data.DatabaseHelper;
+import com.example.idscomercial.examen1.impl.MyIntentImpl;
 import com.example.idscomercial.examen1.ui.LeeCapturaActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     //tiempo antes de que entre en accion el hilo
     private static final int NEXT_LAYOUT_DELAY_MILLIS = 1500;
     private Handler mShowHandler;
+    private MyIntentImpl mCallback;
+    private Context mContext;
     //instancia del helper de base de datos
     private DatabaseHelper myDb;
 
@@ -23,13 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(LOG_TAG, " db: crea activity " + LOG_TAG);
+
+        mContext = MainActivity.this;
+        mCallback = new MyIntentImpl();
+        mShowHandler = new Handler();
+
+        mCallback.setOnStartListener(startActivity);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        mShowHandler = new Handler();
         delayedShow(NEXT_LAYOUT_DELAY_MILLIS);
     }
 
@@ -55,7 +65,14 @@ public class MainActivity extends AppCompatActivity {
     private final Runnable mShowRunnable = new Runnable() {
         @Override
         public void run() {
-            Intent next = new Intent(getApplicationContext(), LeeCapturaActivity.class);
+            mCallback.start();
+        }
+    };
+
+    private final MyIntentListener startActivity = new MyIntentListener() {
+        @Override
+        public void finishedTime() {
+            Intent next = new Intent(mContext, LeeCapturaActivity.class);
 
             startActivity(next);
             finish();
@@ -65,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
         mShowHandler.removeCallbacks(mShowRunnable);
         Log.d(LOG_TAG, " db: presiona back: elimina " + LOG_TAG);
     }
