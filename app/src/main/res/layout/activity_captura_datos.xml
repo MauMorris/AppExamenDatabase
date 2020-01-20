@@ -1,185 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.idscomercial.examen1.ui.CapturaDatosActivity">
+<layout>
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        tools:context="com.example.idscomercial.examen1.ui.CapturaDatosActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/padding_layout"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_nombre"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_layout">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_nombre"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nombre_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nombre_text"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_apellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/nombre_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nombre_text"
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_apellido"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/apellido_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="@string/apellidos_text"
-                    android:maxLength="40"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_direccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/apellido_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/apellidos_text"
+                        android:inputType="text"
+                        android:maxLength="40"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_direccion"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/direccion_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="@string/direccion_text"
-                    android:maxLength="50"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_telefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/direccion_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/direccion_text"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_telefono"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/telefono_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLength="11"
-                    android:hint="@string/telefono_text"
-                    android:inputType="phone"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_mail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/telefono_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/telefono_text"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_mail"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/mail_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/mail_text"
-                    android:maxLength="60"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_fecha_nac"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/fab_margin">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/mail_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/mail_text"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="60"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_fecha_nac"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/fecha_nacimiento_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/fecha_nac_text"
-                    android:maxLength="10"
-                    android:inputType="date"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_edo_civil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/fecha_nacimiento_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fecha_nac_text"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_edo_civil"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/estado_civil_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edo_civil_text"
-                    android:inputType="text"
-                    android:maxLength="25"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_usuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/estado_civil_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/edo_civil_text"
+                        android:inputType="text"
+                        android:maxLength="25"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_usuario"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/usuario_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/usuario_text"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_contraseña"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/usuario_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/usuario_text"
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_contraseña"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/contrasenia_text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/contraseña_text"
-                    android:maxLength="30"
-                    android:inputType="textPassword"
-                    android:maxLines="1" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:background="@color/background_color_edit_text">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/contrasenia_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/contraseña_text"
+                        android:inputType="textPassword"
+                        android:maxLength="30"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/siguiente_pantalla_floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

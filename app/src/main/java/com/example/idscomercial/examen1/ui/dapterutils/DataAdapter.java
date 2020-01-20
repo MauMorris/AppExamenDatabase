@@ -1,4 +1,4 @@
-package com.example.idscomercial.examen1.datatoshow;
+package com.example.idscomercial.examen1.ui.dapterutils;
 
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -73,18 +73,18 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.tv_id_resultado);
-            nombre = itemView.findViewById(R.id.tv_nombre_resultado);
-            apellidos = itemView.findViewById(R.id.tv_apellidos_resultado);
-            direccion = itemView.findViewById(R.id.tv_direccion_resultado);
+            id = itemView.findViewById(R.id.id_requested_text_view);
+            nombre = itemView.findViewById(R.id.nombre_requested_text_view);
+            apellidos = itemView.findViewById(R.id.apellidos_requested_text_view);
+            direccion = itemView.findViewById(R.id.direccion_requested_text_view);
 
-            telefono = itemView.findViewById(R.id.tv_telefono_resultado);
-            mail = itemView.findViewById(R.id.tv_mail_resultado);
-            fechaNacimiento = itemView.findViewById(R.id.tv_fecha_nacimiento_resultado);
+            telefono = itemView.findViewById(R.id.telefono_requested_text_view);
+            mail = itemView.findViewById(R.id.mail_requested_text_view);
+            fechaNacimiento = itemView.findViewById(R.id.fecha_nacimiento_requested_text_view);
 
-            edoCivil = itemView.findViewById(R.id.tv_estado_civil_resultado);
-            usuario = itemView.findViewById(R.id.tv_usuario_resultado);
-            contraseña = itemView.findViewById(R.id.tv_contraseña_resultado);
+            edoCivil = itemView.findViewById(R.id.estado_civil_requested_text_view);
+            usuario = itemView.findViewById(R.id.usuario_requested_text_view);
+            contraseña = itemView.findViewById(R.id.contraseña_requested_text_view);
         }
     }
 }

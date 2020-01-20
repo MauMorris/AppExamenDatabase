@@ -1,7 +1,7 @@
 package com.example.idscomercial.examen1.ui;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,16 +10,17 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.idscomercial.examen1.R;
-import com.example.idscomercial.examen1.data.DatabaseHelper;
-import com.example.idscomercial.examen1.datatoshow.DataAdapter;
-import com.example.idscomercial.examen1.impl.LeeDatosImpl;
+import com.example.idscomercial.examen1.datasource.DatabaseHelper;
+import com.example.idscomercial.examen1.databinding.ActivityLeeDatosBinding;
+import com.example.idscomercial.examen1.ui.dapterutils.DataAdapter;
+import com.example.idscomercial.examen1.vm.LeeDatosImpl;
 
 public class LeeDatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = LeeDatosActivity.class.getSimpleName();
 
     private LeeDatosImpl mPresenter;
-    private RecyclerView mRecyclerView;
+    private ActivityLeeDatosBinding mDataBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +33,25 @@ public class LeeDatosActivity extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mRecyclerView = findViewById(R.id.rv_resultado);
-        mRecyclerView.setHasFixedSize(true);
+        mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_lee_datos);
 
-        mRecyclerView.setItemViewCacheSize(15);
-        mRecyclerView.setDrawingCacheEnabled(true);
-        mRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        setViews(mDataBinding);
+
+        mDataBinding.goBackFab.setOnClickListener(this);
+    }
+
+    private void setViews(ActivityLeeDatosBinding mDataBinding) {
+        mDataBinding.resultadoRecyclerView.setHasFixedSize(true);
+
+        mDataBinding.resultadoRecyclerView.setItemViewCacheSize(15);
+        mDataBinding.resultadoRecyclerView.setDrawingCacheEnabled(true);
+        mDataBinding.resultadoRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mDataBinding.resultadoRecyclerView.setLayoutManager(mLayoutManager);
 
-        RecyclerView.Adapter mAdapter = new DataAdapter(mPresenter.read());
-        mRecyclerView.setAdapter(mAdapter);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(this);
+        DataAdapter mAdapter = new DataAdapter(mPresenter.getDataFromDB().getmDataRow());
+        mDataBinding.resultadoRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
