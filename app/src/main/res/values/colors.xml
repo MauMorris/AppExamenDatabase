@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorLeeButton">#00BCD4</color>
-    <color name="colorCapturaButton">#FF5722</color>
+    <color name="colorPrimary">#2e7d32</color>
+    <color name="colorPrimaryDark">#005005</color>
+    <color name="colorAccent">#f9a825</color>
+    <color name="colorLeeButton">#ffb74d</color>
+    <color name="colorCapturaButton">#c88719</color>
+    <color name="background_color_edit_text">#efebe9</color>
+    <color name="background_white">#ffffff</color>
+    <color name="error_text_red">@android:color/holo_red_dark</color>
 </resources>

@@ -2,26 +2,28 @@ package com.example.idscomercial.examen1;
 
 import android.content.Context;
 import android.content.Intent;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
-import com.example.idscomercial.examen1.callbacks.MyIntentListener;
-import com.example.idscomercial.examen1.data.DatabaseHelper;
-import com.example.idscomercial.examen1.impl.MyIntentImpl;
+import com.example.idscomercial.examen1.databinding.ActivityMainBinding;
+import com.example.idscomercial.examen1.ui.callbacks.FinishAnimationListener;
+import com.example.idscomercial.examen1.ui.callbacks.MainActivityAnimation;
 import com.example.idscomercial.examen1.ui.LeeCapturaActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FinishAnimationListener{
     //Cada LOG_TAG que aparezca en el codigo es para el taggeo de los flujos que recorre el usuario
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     //tiempo antes de que entre en accion el hilo
-    private static final int NEXT_LAYOUT_DELAY_MILLIS = 1500;
+    private static final int NEXT_LAYOUT_DELAY_MILLIS = 2500;
+    private static final int INTRO_DELAY_MILIS = 600;
     private Handler mShowHandler;
-    private MyIntentImpl mCallback;
+    private MainActivityAnimation mMainAnimation;
     private Context mContext;
-    //instancia del helper de base de datos
-    private DatabaseHelper myDb;
+    private ActivityMainBinding mDataBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,31 +32,62 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, " db: crea activity " + LOG_TAG);
 
         mContext = MainActivity.this;
-        mCallback = new MyIntentImpl();
+        mMainAnimation = new MainActivityAnimation(this);
         mShowHandler = new Handler();
 
-        mCallback.setOnStartListener(startActivity);
+        mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        delayedShow(NEXT_LAYOUT_DELAY_MILLIS);
+        delayedIntro(INTRO_DELAY_MILIS);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
+        mShowHandler.removeCallbacks(mIntroRunnable);
         mShowHandler.removeCallbacks(mShowRunnable);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        mShowHandler.removeCallbacks(mIntroRunnable);
+        mShowHandler.removeCallbacks(mShowRunnable);
+        Log.d(LOG_TAG, " db: presiona back: elimina " + LOG_TAG);
+    }
+
+    private void delayedIntro(int delay) {
+        try{
+            Log.d(LOG_TAG, " db: base de datos creada");
+            mDataBinding.loadingIndicatorProgressBar.setVisibility(View.INVISIBLE);
+
+            mShowHandler.removeCallbacks(mIntroRunnable);
+            mShowHandler.removeCallbacks(mShowRunnable);
+
+            mShowHandler.postDelayed(mIntroRunnable, delay);
+        } catch(Exception e){
+            Log.d(LOG_TAG, " db: no se pudo crear la base de datos");
+        }
+    }
+
+    private final Runnable mIntroRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mDataBinding.loadingIndicatorProgressBar.setVisibility(View.VISIBLE);
+            delayedShow(NEXT_LAYOUT_DELAY_MILLIS);
+        }
+    };
+
     private void delayedShow(int delay){
         try{
-            myDb = new DatabaseHelper(this);
             Log.d(LOG_TAG, " db: base de datos creada");
 
+            mShowHandler.removeCallbacks(mIntroRunnable);
             mShowHandler.removeCallbacks(mShowRunnable);
             mShowHandler.postDelayed(mShowRunnable, delay);
         } catch(Exception e){
@@ -65,25 +98,15 @@ public class MainActivity extends AppCompatActivity {
     private final Runnable mShowRunnable = new Runnable() {
         @Override
         public void run() {
-            mCallback.start();
-        }
-    };
-
-    private final MyIntentListener startActivity = new MyIntentListener() {
-        @Override
-        public void finishedTime() {
-            Intent next = new Intent(mContext, LeeCapturaActivity.class);
-
-            startActivity(next);
-            finish();
+            mMainAnimation.finishTask();
         }
     };
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void finishedTime() {
+        Intent next = new Intent(mContext, LeeCapturaActivity.class);
 
-        mShowHandler.removeCallbacks(mShowRunnable);
-        Log.d(LOG_TAG, " db: presiona back: elimina " + LOG_TAG);
+        startActivity(next);
+        finish();
     }
 }

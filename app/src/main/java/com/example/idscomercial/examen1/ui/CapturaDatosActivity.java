@@ -2,34 +2,32 @@ package com.example.idscomercial.examen1.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
 import com.example.idscomercial.examen1.R;
-import com.example.idscomercial.examen1.data.DatabaseHelper;
-import com.example.idscomercial.examen1.impl.CapturaDatosImpl;
+import com.example.idscomercial.examen1.databinding.ActivityCapturaDatosBinding;
+
+import com.example.idscomercial.examen1.datasource.DatabaseHelper;
+import com.example.idscomercial.examen1.vm.CapturaDatosImpl;
+
+import java.util.Objects;
 
 public class CapturaDatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = CapturaDatosActivity.class.getSimpleName();
 
-    private TextInputEditText nombre, apellidos, direccion;
-    private TextInputEditText telefono, mail, fecha_nacimiento;
-    private TextInputEditText edo_civil, usuario, contraseña;
-
-    private TextInputLayout til_nombre, til_apellidos, til_direccion;
-    private TextInputLayout til_telefono, til_mail, til_fecha_nacimiento;
-    private TextInputLayout til_edo_civil, til_usuario, til_contraseña;
-
-    private FloatingActionButton fab;
-
     private Context mContext;
     private CapturaDatosImpl mPresenter;
+    int count = 0;
+
+    private ActivityCapturaDatosBinding mDataBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,57 +38,79 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
         mContext = CapturaDatosActivity.this;
         mPresenter = new CapturaDatosImpl(mContext, new DatabaseHelper(mContext));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_captura_datos);
 
-        til_nombre = findViewById(R.id.til_nombre);
-        nombre = findViewById(R.id.et_nombre);
+        mDataBinding.siguientePantallaFloatingActionButton.setOnClickListener(this);
+        mDataBinding.fechaNacimientoEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        til_apellidos = findViewById(R.id.til_apellido);
-        apellidos = findViewById(R.id.et_apellido);
+            }
 
-        til_direccion = findViewById(R.id.til_direccion);
-        direccion = findViewById(R.id.et_direccion);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        til_telefono = findViewById(R.id.til_telefono);
-        telefono = findViewById(R.id.et_telefono);
+            }
 
-        til_mail = findViewById(R.id.til_mail);
-        mail = findViewById(R.id.et_mail);
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int inputLength = mDataBinding.fechaNacimientoEditText.getText().toString().length();
+                String slashChar = "/";
 
-        til_fecha_nacimiento = findViewById(R.id.til_fecha_nac);
-        fecha_nacimiento = findViewById(R.id.et_fecha_nac);
+                if (count < inputLength && (inputLength == 2 || inputLength == 5)){
+                    mDataBinding.fechaNacimientoEditText.setText(mDataBinding.fechaNacimientoEditText.getText() + slashChar);
+                    mDataBinding.fechaNacimientoEditText.setSelection(mDataBinding.fechaNacimientoEditText.getText().toString().length());
 
-        til_edo_civil = findViewById(R.id.til_edo_civil);
-        edo_civil = findViewById(R.id.et_edo_civil);
+                } else if (count > inputLength && (inputLength == 3 || inputLength == 6)){
+                    mDataBinding.fechaNacimientoEditText.setText(mDataBinding.fechaNacimientoEditText.getText().toString()
+                            .substring(0, mDataBinding.fechaNacimientoEditText.getText().toString().length()-2));
 
-        til_usuario = findViewById(R.id.til_usuario);
-        usuario = findViewById(R.id.et_usuario);
+                    mDataBinding.fechaNacimientoEditText.setSelection(mDataBinding.fechaNacimientoEditText.getText().toString().length());
+                }else if (count > inputLength && (inputLength == 2 || inputLength == 5)){
+                    mDataBinding.fechaNacimientoEditText.setText(mDataBinding.fechaNacimientoEditText.getText().toString()
+                            .substring(0, mDataBinding.fechaNacimientoEditText.getText().toString().length()-1));
 
-        til_contraseña = findViewById(R.id.til_contraseña);
-        contraseña = findViewById(R.id.et_contraseña);
-
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(this);
+                    mDataBinding.fechaNacimientoEditText.setSelection(mDataBinding.fechaNacimientoEditText.getText().toString().length());
+                }
+                count = mDataBinding.fechaNacimientoEditText.getText().toString().length();
+            }
+        });
     }
 
     @Override
     public void onClick(View view) {
 
-        boolean resultado = mPresenter.validaDatos(nombre, til_nombre, apellidos, til_apellidos,
-                direccion, til_direccion, telefono, til_telefono, mail, til_mail,
-                fecha_nacimiento, til_fecha_nacimiento, edo_civil, til_edo_civil, usuario, til_usuario,
-                contraseña, til_contraseña);
-        if(resultado)
-        {
-            mPresenter.insert(nombre.getText().toString(), apellidos.getText().toString(),
-                    direccion.getText().toString(), telefono.getText().toString(), mail.getText().toString(),
-                    fecha_nacimiento.getText().toString(), edo_civil.getText().toString(), usuario.getText().toString(),
-                    contraseña.getText().toString());
+        boolean resultado = mPresenter.validaDatos(
+                mDataBinding.nombreEditText, mDataBinding.nombreTextInputLayout,
+                mDataBinding.apellidoEditText, mDataBinding.apellidoTextInputLayout,
+                mDataBinding.direccionEditText, mDataBinding.direccionTextInputLayout,
+                mDataBinding.telefonoEditText, mDataBinding.telefonoTextInputLayout,
+                mDataBinding.mailEditText, mDataBinding.mailTextInputLayout,
+                mDataBinding.fechaNacimientoEditText, mDataBinding.fechaNacimientoTextInputLayout,
+                mDataBinding.estadoCivilEditText, mDataBinding.estadoCivilTextInputLayout,
+                mDataBinding.usuarioEditText, mDataBinding.usuarioTextInputLayout,
+                mDataBinding.contraseniaEditText, mDataBinding.contraseniaTextInputLayout);
+
+        if(resultado) {
+            String nombre = mDataBinding.nombreEditText.getText().toString();
+            String apellidos = mDataBinding.apellidoEditText.getText().toString();
+            String direccion = mDataBinding.direccionEditText.getText().toString();
+            String telefono = mDataBinding.telefonoEditText.getText().toString();
+            String mail = mDataBinding.mailEditText.getText().toString();
+            String fecha_nacimiento = mDataBinding.fechaNacimientoEditText.getText().toString();
+            String edo_civil = mDataBinding.estadoCivilEditText.getText().toString();
+            String usuario = mDataBinding.usuarioEditText.getText().toString();
+            String contrasenia = mDataBinding.contraseniaEditText.getText().toString();
+
+            mPresenter.insert(
+                    nombre, apellidos, direccion,
+                    telefono, mail, fecha_nacimiento,
+                    edo_civil, usuario, contrasenia);
+
             Log.d(LOG_TAG, " db: regresa a la activity en la pila y elimina " + LOG_TAG);
             finish();
         }else{
-            mPresenter.getSnackbar(view, "Agrega los datos correctamente");
+            getSnackbar(view, "Agrega los datos correctamente");
         }
     }
 
@@ -98,5 +118,9 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
     public void onBackPressed() {
         super.onBackPressed();
         Log.d(LOG_TAG, " db: presiona back: regresa a la activity en la pila y elimina " + LOG_TAG);
+    }
+
+    public void getSnackbar(View view, String mensaje) {
+        Snackbar.make(view, mensaje, Snackbar.LENGTH_LONG).setAction("Action", null).show();
     }
 }

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,65 +18,65 @@
             android:orientation="vertical"
             android:padding="@dimen/fab_margin">
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_id_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/id_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="id" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_nombre_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nombre_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/nombre_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_apellidos_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/apellidos_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/apellidos_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_direccion_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/direccion_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/direccion_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_telefono_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/telefono_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/telefono_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_mail_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mail_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/mail_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_fecha_nacimiento_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fecha_nacimiento_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/fecha_nac_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_estado_civil_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/estado_civil_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/edo_civil_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_usuario_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/usuario_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/usuario_text" />
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_contraseña_resultado"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/contraseña_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/contraseña_text" />
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

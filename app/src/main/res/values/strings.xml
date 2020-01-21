@@ -19,4 +19,5 @@
     <string name="usuario_text">Nombre de Usuario</string>
     <string name="contraseña_text">Contraseña</string>
 
+    <string name="texto_ayuda_captura_datos">Introduce la siguiente informacion para ayudarte con tu registro</string>
 </resources>

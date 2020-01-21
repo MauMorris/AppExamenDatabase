@@ -1,12 +1,16 @@
-package com.example.idscomercial.examen1.data;
+package com.example.idscomercial.examen1.repository;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.idscomercial.examen1.datatoshow.DataRow;
+import com.example.idscomercial.examen1.datasource.DatabaseContract;
+import com.example.idscomercial.examen1.datasource.DatabaseHelper;
+
+import com.example.idscomercial.examen1.repository.datareturnutils.RetornoDatosConsultaDB;
+
+import com.example.idscomercial.examen1.ui.dapterutils.DataRow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,28 +28,44 @@ public class CrudDatabaseImpl implements CrudDatabaseView {
     }
 
     @Override
-    public List<DataRow> readData() {
+    public RetornoDatosConsultaDB readData() {
         Cursor res;
-        List<DataRow> buffer = null;
+        RetornoDatosConsultaDB buffer = new RetornoDatosConsultaDB();
+        List<DataRow> bufferList;
+
         DataRow row;
 
         try {
             res = mDatabase.getAllData();
+            bufferList = null;
+
+            buffer.setEstatusConsulta(RetornoDatosConsultaDB.ACCESO_CORRECTO);
+            buffer.setListOfData(bufferList);
+            buffer.setCursorData(res);
+
         } catch (Exception e) {
             Log.d(LOG_TAG, " db: no hay tablas en la db");
-            Toast.makeText(mContext, "No existe la base de datos", Toast.LENGTH_LONG).show();
 
             res = null;
-            buffer = null;
+            bufferList = null;
+
+            buffer.setEstatusConsulta(RetornoDatosConsultaDB.NO_EXISTE_DB);
+            buffer.setListOfData(bufferList);
+            buffer.setCursorData(res);
         }
 
         if (res != null) {
             if (res.getCount() == 0) {
-                buffer = null;
-                showMessage(":(", "No hay datos que mostrar");
+                bufferList = null;
+                res = null;
+
+                buffer.setEstatusConsulta(RetornoDatosConsultaDB.NO_HAY_DATA);
+                buffer.setListOfData(bufferList);
+                buffer.setCursorData(res);
+
                 Log.d(LOG_TAG, " db: no hay campos en la db");
             } else {
-                buffer = new ArrayList<>();
+                bufferList = new ArrayList<>();
 
                 while (res.moveToNext()) {
                     row = new DataRow();
@@ -61,9 +81,14 @@ public class CrudDatabaseImpl implements CrudDatabaseView {
                     row.setUsuarioRow(DatabaseContract.COL_USUARIO + " : " + res.getString(8));
                     row.setContraseñaRow(DatabaseContract.COL_CONTRASEÑA + " : " + res.getString(9));
 
-                    buffer.add(row);
+                    bufferList.add(row);
                 }
                 res.close();
+
+                buffer.setEstatusConsulta(RetornoDatosConsultaDB.OPERACION_REALIZADA);
+                buffer.setListOfData(bufferList);
+                buffer.setCursorData(res);
+
                 Log.d(LOG_TAG, " db: lectura finalizada ");
             }
         }
@@ -97,15 +122,5 @@ public class CrudDatabaseImpl implements CrudDatabaseView {
     @Override
     public void deleteData(String id) {
         Integer delete = mDatabase.deleteData(id);
-    }
-
-    private void showMessage(String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-
-        builder.setCancelable(true)
-                .setTitle(title)
-                .setMessage(message);
-
-        builder.show();
     }
 }
