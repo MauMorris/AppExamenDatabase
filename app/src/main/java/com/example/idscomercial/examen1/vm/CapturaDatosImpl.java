@@ -1,9 +1,9 @@
 package com.example.idscomercial.examen1.vm;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import android.view.View;
 
 import com.example.idscomercial.examen1.repository.CrudDatabaseImpl;
@@ -31,19 +31,19 @@ public class CapturaDatosImpl {
         final String NAME_REGEX = "[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ ]+";
         final String LAST_REGEX = "[A-Za-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ ]+";
         final String ADDRESS_REGEX = "[A-Za-z0-9äÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ#. -]+";
-        final String PHONE_REGEX = "\\d{2}-\\d{8}";
+        final String PHONE_REGEX = "\\d{2}\\d{8}";
         final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        final String DATE_REGEX = "\\d{2}-\\d{2}-\\d{4}";
-        final String SINGLE_REGEX = "^[A-Za-z]";
+        final String DATE_REGEX = "\\d{2}/\\d{2}/\\d{4}";
+        final String SINGLE_REGEX = "^[A-Za-z]+";
         final String USER_REGEX = "[A-Za-z0-9. -_]+";
         final String PASSWORD_REGEX = "[A-Za-z0-9!@#$%&=. -]+";
 
         final String MSJ_NAME = "dato incorrecto";
         final String MSJ_LAST = "dato incorrecto";
         final String MSJ_ADDRESS = "dato incorrecto: ej calle a #123-1 col abc";
-        final String MSJ_PHONE = "formato incorrecto: intenta de nuevo ej (55-11223344)";
-        final String MSJ_MAIL = "formato incorrecto: ej (add@bie.co)";
-        final String MSJ_DATE = "formato incorrecto: ej (12-13-1990)";
+        final String MSJ_PHONE = "formato incorrecto: intenta de nuevo ej (12 3456 7890)";
+        final String MSJ_MAIL = "formato incorrecto: ej (ab@cd.co)";
+        final String MSJ_DATE = "formato incorrecto: ej (12/12/1990)";
         final String MSJ_SINGLE = "dato incorrecto";
         final String MSJ_USER = "dato incorrecto";
         final String MSJ_PASSWORD = "dato incorrecto";

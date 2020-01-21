@@ -1,11 +1,13 @@
 package com.example.idscomercial.examen1.ui;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 
@@ -15,12 +17,15 @@ import com.example.idscomercial.examen1.databinding.ActivityCapturaDatosBinding;
 import com.example.idscomercial.examen1.datasource.DatabaseHelper;
 import com.example.idscomercial.examen1.vm.CapturaDatosImpl;
 
+import java.util.Objects;
+
 public class CapturaDatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = CapturaDatosActivity.class.getSimpleName();
 
     private Context mContext;
     private CapturaDatosImpl mPresenter;
+    int count = 0;
 
     private ActivityCapturaDatosBinding mDataBinding;
 
@@ -33,12 +38,43 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
         mContext = CapturaDatosActivity.this;
         mPresenter = new CapturaDatosImpl(mContext, new DatabaseHelper(mContext));
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_captura_datos);
 
         mDataBinding.siguientePantallaFloatingActionButton.setOnClickListener(this);
+        mDataBinding.fechaNacimientoEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int inputLength = mDataBinding.fechaNacimientoEditText.getText().toString().length();
+                String slashChar = "/";
+
+                if (count < inputLength && (inputLength == 2 || inputLength == 5)){
+                    mDataBinding.fechaNacimientoEditText.setText(mDataBinding.fechaNacimientoEditText.getText() + slashChar);
+                    mDataBinding.fechaNacimientoEditText.setSelection(mDataBinding.fechaNacimientoEditText.getText().toString().length());
+
+                } else if (count > inputLength && (inputLength == 3 || inputLength == 6)){
+                    mDataBinding.fechaNacimientoEditText.setText(mDataBinding.fechaNacimientoEditText.getText().toString()
+                            .substring(0, mDataBinding.fechaNacimientoEditText.getText().toString().length()-2));
+
+                    mDataBinding.fechaNacimientoEditText.setSelection(mDataBinding.fechaNacimientoEditText.getText().toString().length());
+                }else if (count > inputLength && (inputLength == 2 || inputLength == 5)){
+                    mDataBinding.fechaNacimientoEditText.setText(mDataBinding.fechaNacimientoEditText.getText().toString()
+                            .substring(0, mDataBinding.fechaNacimientoEditText.getText().toString().length()-1));
+
+                    mDataBinding.fechaNacimientoEditText.setSelection(mDataBinding.fechaNacimientoEditText.getText().toString().length());
+                }
+                count = mDataBinding.fechaNacimientoEditText.getText().toString().length();
+            }
+        });
     }
 
     @Override

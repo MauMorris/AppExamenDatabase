@@ -17,4 +17,29 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ErrorText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="HintText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="LabelText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <!-- reference our hint & error styles -->
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="background">@drawable/edit_text_background</item>
+
+        <!--        <item name="colorControlNormal">@color/white</item>-->
+<!--        <item name="colorControlActivated">@color/blue</item>-->
+<!--        <item name="colorControlHighlight">@color/green</item>-->
+    </style>
 </resources>
