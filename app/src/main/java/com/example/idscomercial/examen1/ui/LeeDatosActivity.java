@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.idscomercial.examen1.R;
 import com.example.idscomercial.examen1.datasource.DatabaseHelper;
@@ -47,6 +48,12 @@ public class LeeDatosActivity extends AppCompatActivity implements View.OnClickL
 
     private void subscribeUI(LeeDatosViewModel mViewModel) {
         mViewModel.getLiveData().observe(this, datosConsultaHolder -> mAdapter.setData(datosConsultaHolder));
+        mViewModel.getWebLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Toast.makeText(LeeDatosActivity.this, s, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void setViews(ActivityLeeDatosBinding mDataBinding) {
@@ -65,7 +72,7 @@ public class LeeDatosActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        finish();
+        mViewModel.getDataFromInternet("test", "123", "23");
     }
 
     @Override

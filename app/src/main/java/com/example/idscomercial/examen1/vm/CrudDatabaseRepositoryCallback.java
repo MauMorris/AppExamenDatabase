@@ -11,4 +11,6 @@ public interface CrudDatabaseRepositoryCallback {
     void deleteData(String id);
 
     void readAllData(Context context, ReturnDataFromTask returnDataFromTask);
+
+    void getDataFromWeb(String name, String salary, String age, ReturnDataFromWeb returnDataFromWeb);
 }

@@ -14,6 +14,7 @@ public class LeeDatosViewModel {
     private CrudDatabaseRepositoryCallback mCrud;
 
     private MutableLiveData<DatosConsultaHolder> mLiveData;
+    private MutableLiveData<String> mWebLiveData;
 
     public LeeDatosViewModel(Context context) {
         mContext = context;
@@ -21,6 +22,10 @@ public class LeeDatosViewModel {
 
         if(mLiveData == null){
             mLiveData = new MutableLiveData<>();
+        }
+
+        if(mWebLiveData == null){
+            mWebLiveData = new MutableLiveData<>();
         }
     }
 
@@ -30,5 +35,17 @@ public class LeeDatosViewModel {
 
     public MutableLiveData<DatosConsultaHolder> getLiveData(){
         return mLiveData;
+    }
+
+    public MutableLiveData<String> getWebLiveData(){return mWebLiveData;}
+
+    public void getDataFromInternet(String test, String salary, String age) {
+        mCrud.getDataFromWeb(test, salary, age, new ReturnDataFromWeb(){
+
+            @Override
+            public void returnWebData(String data) {
+                mWebLiveData.setValue(data);
+            }
+        });
     }
 }

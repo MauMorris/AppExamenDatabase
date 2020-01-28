@@ -10,8 +10,10 @@ import com.example.idscomercial.examen1.datasource.DataRow;
 import com.example.idscomercial.examen1.datasource.DatabaseContract;
 import com.example.idscomercial.examen1.datasource.DatabaseHelper;
 import com.example.idscomercial.examen1.datasource.DatabaseSyncIntentService;
+import com.example.idscomercial.examen1.datasource.QueryFromInternet;
 import com.example.idscomercial.examen1.datasource.QueryTask;
 
+import com.example.idscomercial.examen1.vm.ReturnDataFromWeb;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 import com.example.idscomercial.examen1.vm.CrudDatabaseRepositoryCallback;
 import com.example.idscomercial.examen1.vm.ReturnDataFromTask;
@@ -146,5 +148,21 @@ public class CrudDatabaseRepository implements CrudDatabaseRepositoryCallback {
     public void readAllData(Context context, ReturnDataFromTask returnDataFromTask) {
         Intent intentToSyncDataFromDB = new Intent(context, DatabaseSyncIntentService.class);
         context.startService(intentToSyncDataFromDB);
+    }
+
+    @Override
+    public void getDataFromWeb(String name, String salary, String age, ReturnDataFromWeb returnDataFromWeb) {
+        QueryFromInternet mTask = new QueryFromInternet(mContext, new WebTaskInterface() {
+            @Override
+            public void sucessResultPostExecute(String result, String cursor) {
+                returnDataFromWeb.returnWebData(cursor);
+            }
+
+            @Override
+            public void errorResultPostExecute(String error, String cursor) {
+                returnDataFromWeb.returnWebData(cursor);
+            }
+        }, name, salary, age);
+        mTask.execute("");
     }
 }
