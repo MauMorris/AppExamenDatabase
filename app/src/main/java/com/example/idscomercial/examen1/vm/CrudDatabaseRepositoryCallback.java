@@ -1,15 +1,14 @@
-package com.example.idscomercial.examen1.repository;
+package com.example.idscomercial.examen1.vm;
 
-import com.example.idscomercial.examen1.repository.datareturnutils.RetornoDatosConsultaDB;
-import com.example.idscomercial.examen1.ui.dapterutils.DataRow;
+import android.content.Context;
 
-import java.util.List;
-
-public interface CrudDatabaseView {
-    RetornoDatosConsultaDB readData();
+public interface CrudDatabaseRepositoryCallback {
+    void readData(ReturnDataFromTask returnToViewModel);
     void insertData(String nombre, String apellidos, String direccion, String telefono,
                      String mail, String fecha, String edo_civil, String usuario, String contraseña);
     void updateData(String id, String nombre, String apellidos, String direccion, String telefono,
                     String mail,String fecha,String edo_civil,String usuario, String contraseña);
     void deleteData(String id);
+
+    void readAllData(Context context, ReturnDataFromTask returnDataFromTask);
 }

@@ -1,4 +1,4 @@
-package com.example.idscomercial.examen1.ui.dapterutils;
+package com.example.idscomercial.examen1.datasource;
 
 
 public class DataRow {

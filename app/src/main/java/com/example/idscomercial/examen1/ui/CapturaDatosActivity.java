@@ -15,16 +15,14 @@ import com.example.idscomercial.examen1.R;
 import com.example.idscomercial.examen1.databinding.ActivityCapturaDatosBinding;
 
 import com.example.idscomercial.examen1.datasource.DatabaseHelper;
-import com.example.idscomercial.examen1.vm.CapturaDatosImpl;
-
-import java.util.Objects;
+import com.example.idscomercial.examen1.vm.CapturaDatosViewModel;
 
 public class CapturaDatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = CapturaDatosActivity.class.getSimpleName();
 
     private Context mContext;
-    private CapturaDatosImpl mPresenter;
+    private CapturaDatosViewModel mPresenter;
     int count = 0;
 
     private ActivityCapturaDatosBinding mDataBinding;
@@ -36,7 +34,7 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
         Log.d(LOG_TAG, " db: crea activity " + LOG_TAG);
 
         mContext = CapturaDatosActivity.this;
-        mPresenter = new CapturaDatosImpl(mContext, new DatabaseHelper(mContext));
+        mPresenter = new CapturaDatosViewModel(mContext, new DatabaseHelper(mContext));
 
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_captura_datos);
 

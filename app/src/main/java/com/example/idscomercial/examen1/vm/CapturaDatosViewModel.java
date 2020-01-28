@@ -6,16 +6,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import android.view.View;
 
-import com.example.idscomercial.examen1.repository.CrudDatabaseImpl;
+import com.example.idscomercial.examen1.repository.CrudDatabaseRepository;
 import com.example.idscomercial.examen1.datasource.DatabaseHelper;
 
 import java.util.regex.Pattern;
 
-public class CapturaDatosImpl {
-    private CrudDatabaseImpl mCrud;
+public class CapturaDatosViewModel {
+    private CrudDatabaseRepository mCrud;
 
-    public CapturaDatosImpl(Context mContext, DatabaseHelper mDatabase) {
-        mCrud = new CrudDatabaseImpl(mContext, mDatabase);
+    public CapturaDatosViewModel(Context mContext, DatabaseHelper mDatabase) {
+        mCrud = CrudDatabaseRepository.getInstance(mContext);
     }
 
     public boolean validaDatos(TextInputEditText nombre, TextInputLayout tilNombre,
