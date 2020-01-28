@@ -1,4 +1,4 @@
-package com.example.idscomercial.examen1.ui.dapterutils;
+package com.example.idscomercial.examen1.ui.adapterutils;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,14 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.idscomercial.examen1.R;
+import com.example.idscomercial.examen1.datasource.DataRow;
+import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 
 import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private List<DataRow> dataList;
+    private DatosConsultaHolder mDataHolder;
 
-    public DataAdapter(List<DataRow> dataList) {
-        this.dataList = dataList;
+    public DataAdapter() {
     }
 
     @Override
@@ -31,7 +32,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(DataAdapter.ViewHolder holder, int position) {
-        DataRow ci = dataList.get(position);
+        DataRow ci = mDataHolder.getmDataRow().get(position);
 
         holder.id.setText(ci.getIdRow());
 
@@ -50,7 +51,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return (mDataHolder == null) ? 0 : mDataHolder.getmDataRow().size();
+    }
+
+    public void setData(DatosConsultaHolder datosConsultaHolder) {
+        if(mDataHolder != null)
+            mDataHolder.getCursorData().close();
+
+        mDataHolder = datosConsultaHolder;
+
+        if(datosConsultaHolder != null)
+            notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

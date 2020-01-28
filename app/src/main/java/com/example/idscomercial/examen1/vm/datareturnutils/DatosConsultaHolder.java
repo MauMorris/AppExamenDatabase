@@ -1,12 +1,12 @@
-package com.example.idscomercial.examen1.repository.datareturnutils;
+package com.example.idscomercial.examen1.vm.datareturnutils;
 
 import android.database.Cursor;
 
-import com.example.idscomercial.examen1.ui.dapterutils.DataRow;
+import com.example.idscomercial.examen1.datasource.DataRow;
 
 import java.util.List;
 
-public class RetornoDatosConsultaDB {
+public class DatosConsultaHolder {
     private List<DataRow> mDataRow;
     private int estatusConsulta;
     private Cursor cursorData;
@@ -16,7 +16,7 @@ public class RetornoDatosConsultaDB {
     public static final int NO_EXISTE_DB = 3;
     public static final int OPERACION_REALIZADA = 4;
 
-    public RetornoDatosConsultaDB() {
+    public DatosConsultaHolder() {
     }
 
     public void setListOfData(List<DataRow> mDataRow) {

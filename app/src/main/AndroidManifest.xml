@@ -31,5 +31,8 @@
             android:name=".ui.CapturaDatosActivity"
             android:label="@string/title_activity_captura_datos"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service android:name=".datasource.DatabaseSyncIntentService"
+            android:exported="false"/>
     </application>
 </manifest>

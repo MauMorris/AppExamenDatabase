@@ -3,6 +3,7 @@ package com.example.idscomercial.examen1.ui;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -12,15 +13,17 @@ import android.view.View;
 import com.example.idscomercial.examen1.R;
 import com.example.idscomercial.examen1.datasource.DatabaseHelper;
 import com.example.idscomercial.examen1.databinding.ActivityLeeDatosBinding;
-import com.example.idscomercial.examen1.ui.dapterutils.DataAdapter;
-import com.example.idscomercial.examen1.vm.LeeDatosImpl;
+import com.example.idscomercial.examen1.ui.adapterutils.DataAdapter;
+import com.example.idscomercial.examen1.vm.LeeDatosViewModel;
+import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 
 public class LeeDatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = LeeDatosActivity.class.getSimpleName();
 
-    private LeeDatosImpl mPresenter;
+    private LeeDatosViewModel mViewModel;
     private ActivityLeeDatosBinding mDataBinding;
+    private DataAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,7 @@ public class LeeDatosActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_lee_datos);
         Log.d(LOG_TAG, " db: crea activity " + LOG_TAG);
 
-        mPresenter = new LeeDatosImpl(LeeDatosActivity.this, new DatabaseHelper(LeeDatosActivity.this));
+        mViewModel = new LeeDatosViewModel(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,8 +39,14 @@ public class LeeDatosActivity extends AppCompatActivity implements View.OnClickL
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_lee_datos);
 
         setViews(mDataBinding);
-
         mDataBinding.goBackFab.setOnClickListener(this);
+        subscribeUI(mViewModel);
+
+        mViewModel.getDataFromDB(this);
+    }
+
+    private void subscribeUI(LeeDatosViewModel mViewModel) {
+        mViewModel.getLiveData().observe(this, datosConsultaHolder -> mAdapter.setData(datosConsultaHolder));
     }
 
     private void setViews(ActivityLeeDatosBinding mDataBinding) {
@@ -50,21 +59,17 @@ public class LeeDatosActivity extends AppCompatActivity implements View.OnClickL
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mDataBinding.resultadoRecyclerView.setLayoutManager(mLayoutManager);
 
-        DataAdapter mAdapter = new DataAdapter(mPresenter.getDataFromDB().getmDataRow());
+        mAdapter = new DataAdapter();
         mDataBinding.resultadoRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void onClick(View view) {
-        Log.d(LOG_TAG, " db: regresa a la activity en la pila y elimina " + LOG_TAG );
         finish();
-        mPresenter.destroy();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Log.d(LOG_TAG, " db: presiona back: regresa a la activity en la pila y elimina " + LOG_TAG);
-        mPresenter.destroy();
     }
 }
