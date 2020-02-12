@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_layout">
+
+            <TextView
+                android:id="@+id/header_captura_direccion_tv"
+                style="@style/HeaderTextFromEnrollment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/header_captura_direccion_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/calle_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/header_til_margin"
+                android:hint="@string/calle_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_captura_direccion_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/calle_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputTextFromEnrollment" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numero_exterior_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:hint="@string/numero_exterior_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calle_til">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/numero_exterior_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputNumeroFromEnrollment" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numero_interior_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:hint="@string/numero_interior_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numero_exterior_til">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/numero_interior_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputTextFromEnrollment" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/colonia_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:hint="@string/colonia_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numero_interior_til">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/colonia_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputTextFromEnrollment"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/codigo_postal_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:hint="@string/codigo_postal_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/colonia_til">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/codigo_postal_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputCodigoPostalFromEnrollment" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/municipio_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:hint="@string/municipio_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/codigo_postal_til">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/municipio_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputTextFromEnrollment" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/estado_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:hint="@string/estado_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/municipio_til">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/estado_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/InputTextFromEnrollment" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/next_enrollment_usuario_contrasena_fab"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_media_next" />
+    </FrameLayout>
+</layout>

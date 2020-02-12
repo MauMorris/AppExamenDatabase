@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="text_anim_time">450</integer>
+
+    <integer name="intro_delay_milis">600</integer>
+    <integer name="next_layout_delay_milis">1500</integer>
+    <integer name="service_request_time">1200</integer>
+</resources>
+
+

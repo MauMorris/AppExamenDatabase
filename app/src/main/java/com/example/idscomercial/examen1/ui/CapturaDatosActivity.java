@@ -2,9 +2,11 @@ package com.example.idscomercial.examen1.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,15 +16,14 @@ import android.view.View;
 import com.example.idscomercial.examen1.R;
 import com.example.idscomercial.examen1.databinding.ActivityCapturaDatosBinding;
 
-import com.example.idscomercial.examen1.datasource.DatabaseHelper;
 import com.example.idscomercial.examen1.vm.CapturaDatosViewModel;
 
 public class CapturaDatosActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG_TAG = CapturaDatosActivity.class.getSimpleName();
 
-    private Context mContext;
-    private CapturaDatosViewModel mPresenter;
+    private Context mContext = CapturaDatosActivity.this;
+    private CapturaDatosViewModel mViewModel;
     int count = 0;
 
     private ActivityCapturaDatosBinding mDataBinding;
@@ -33,8 +34,7 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_captura_datos);
         Log.d(LOG_TAG, " db: crea activity " + LOG_TAG);
 
-        mContext = CapturaDatosActivity.this;
-        mPresenter = new CapturaDatosViewModel(mContext, new DatabaseHelper(mContext));
+        mViewModel = new ViewModelProvider(this).get(CapturaDatosViewModel.class);
 
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_captura_datos);
 
@@ -78,7 +78,7 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
 
-        boolean resultado = mPresenter.validaDatos(
+        boolean resultado = mViewModel.validaDatos(
                 mDataBinding.nombreEditText, mDataBinding.nombreTextInputLayout,
                 mDataBinding.apellidoEditText, mDataBinding.apellidoTextInputLayout,
                 mDataBinding.direccionEditText, mDataBinding.direccionTextInputLayout,
@@ -100,7 +100,7 @@ public class CapturaDatosActivity extends AppCompatActivity implements View.OnCl
             String usuario = mDataBinding.usuarioEditText.getText().toString();
             String contrasenia = mDataBinding.contraseniaEditText.getText().toString();
 
-            mPresenter.insert(
+            mViewModel.insert(
                     nombre, apellidos, direccion,
                     telefono, mail, fecha_nacimiento,
                     edo_civil, usuario, contrasenia);

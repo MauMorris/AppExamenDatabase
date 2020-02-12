@@ -27,6 +27,7 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="LabelText" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">14sp</item>
@@ -37,9 +38,64 @@
         <item name="errorTextAppearance">@style/ErrorText</item>
         <item name="hintTextAppearance">@style/HintText</item>
         <item name="background">@drawable/edit_text_background</item>
+    </style>
 
-        <!--        <item name="colorControlNormal">@color/white</item>-->
-<!--        <item name="colorControlActivated">@color/blue</item>-->
-<!--        <item name="colorControlHighlight">@color/green</item>-->
+
+
+    <style name="HeaderTextFromEnrollment">
+        <item name="android:layout_marginTop">@dimen/enrollment_header_margin_top</item>
+        <item name="android:fontFamily">"sans-serif"</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/enrollment_header_size</item>
+    </style>
+
+    <style name="DescriptionTextFromEnrollment">
+        <item name="android:fontFamily">"sans-serif-light"</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/description_header_size</item>
+    </style>
+
+
+
+    <style name="InputTextFromEnrollment">
+        <item name="android:inputType">text</item>
+        <item name="android:maxLength">40</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="InputFechaNacimientoEnrollment">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">10</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="InputDireccionFromEnrollment">
+        <item name="android:inputType">text</item>
+        <item name="android:maxLength">60</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="InputNumeroCelularFromEnrollment">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">12</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="InputNumeroFromEnrollment">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">6</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="InputCodigoPostalFromEnrollment">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="InputMailFromEnrollment">
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:maxLength">60</item>
+        <item name="android:maxLines">1</item>
     </style>
 </resources>

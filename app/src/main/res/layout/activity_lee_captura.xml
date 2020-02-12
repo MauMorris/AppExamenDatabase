@@ -32,7 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_gravity="center|bottom"
                 android:orientation="horizontal"
                 android:padding="@dimen/fab_margin">
 
@@ -43,6 +43,7 @@
                     android:layout_marginEnd="@dimen/text_margin"
                     android:layout_marginRight="@dimen/padding_layout"
                     android:layout_weight="1"
+                    android:textAllCaps="false"
                     android:background="@color/colorCapturaButton"
                     android:text="@string/captura_text"
                     android:textColor="@android:color/white" />
@@ -52,6 +53,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/height_button"
                     android:layout_weight="1"
+                    android:textAllCaps="false"
                     android:background="@color/colorLeeButton"
                     android:text="@string/lee_text"
                     android:textColor="@android:color/white" />

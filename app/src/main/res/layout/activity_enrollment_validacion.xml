@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_layout">
+
+            <TextView
+                android:id="@+id/header_creacion_usuario_contrasena_tv"
+                style="@style/HeaderTextFromEnrollment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/header_validacion_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.509"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/descripcion_captura_validacion_tv"
+                style="@style/DescriptionTextFromEnrollment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="@string/descripcion_validacion_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_creacion_usuario_contrasena_tv" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numero_telefonico_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:hint="@string/numero_celular_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descripcion_captura_validacion_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/numero_telefonico_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="12"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/descripcion_aviso_privacidad_tv"
+                style="@style/DescriptionTextFromEnrollment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:text="@string/aviso_privacidad_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numero_telefonico_til" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/next_enrollment_validacion_fab"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_media_next" />
+
+        <ProgressBar
+            android:id="@+id/enrollment_validacion_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_gravity="center"
+            android:background="@drawable/corners"
+            android:padding="4dp" />
+    </FrameLayout>
+</layout>
