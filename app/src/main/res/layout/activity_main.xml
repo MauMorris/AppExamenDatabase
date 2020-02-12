@@ -6,30 +6,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         tools:context="com.example.idscomercial.examen1.MainActivity">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/splash_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_fileName="lf20_fD2Mnd.json"
+            app:lottie_loop="true" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/splash_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/inicia_app"
-            android:textSize="@dimen/splash_text"
+            android:lines="2"
+            android:maxLines="2"
+            android:padding="@dimen/padding_layout"
+            android:text="@string/splash_text"
+            android:textColor="@color/background_white"
+            android:textSize="@dimen/splash_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/loading_indicator_progress_bar"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/corners"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/splash_text_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

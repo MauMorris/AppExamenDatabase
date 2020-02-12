@@ -10,7 +10,6 @@
         android:orientation="vertical"
         tools:context="com.example.idscomercial.examen1.ui.CapturaDatosActivity">
 
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -22,10 +21,10 @@
                 android:padding="@dimen/padding_layout">
 
                 <TextView
+                    style="@style/HeaderTextFromEnrollment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/texto_ayuda_captura_datos" />
+                    android:text="@string/header_captura_perfil_text" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nombre_text_input_layout"
@@ -37,11 +36,9 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nombre_edit_text"
+                        style="@style/InputTextFromEnrollment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLength="30"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -54,11 +51,9 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/apellido_edit_text"
+                        style="@style/InputTextFromEnrollment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLength="40"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -67,15 +62,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fab_margin"
-                    android:hint="@string/fecha_nac_text">
+                    android:hint="@string/fecha_nacimiento_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fecha_nacimiento_edit_text"
+                        style="@style/InputFechaNacimientoEnrollment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -84,15 +77,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fab_margin"
-                    android:hint="@string/telefono_text">
+                    android:hint="@string/numero_celular_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/telefono_edit_text"
+                        style="@style/InputNumeroCelularFromEnrollment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -105,11 +96,9 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/direccion_edit_text"
+                        style="@style/InputDireccionFromEnrollment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -118,15 +107,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/fab_margin"
-                    android:hint="@string/mail_text">
+                    android:hint="@string/correo_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/mail_edit_text"
+                        style="@style/InputMailFromEnrollment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:maxLength="60"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -141,9 +128,7 @@
                         android:id="@+id/estado_civil_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:maxLines="1" />
+                        style="@style/InputTextFromEnrollment"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

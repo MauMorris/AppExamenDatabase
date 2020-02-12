@@ -2,11 +2,18 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="margin_top_from_help_text">22dp</dimen>
 
     <dimen name="padding_layout">25dp</dimen>
-    <dimen name="splash_text">56sp</dimen>
-    <dimen name="height_button">150dp</dimen>
+    <dimen name="splash_text_size">26sp</dimen>
+    <dimen name="height_button">50dp</dimen>
     <dimen name="width_button">160dp</dimen>
 
     <dimen name="text_result_size">14sp</dimen>
+    <dimen name="header_til_margin">20dp</dimen>
+    <dimen name="enrollment_header_margin_top">26dp</dimen>
+    <dimen name="enrollment_header_size">20sp</dimen>
+    <dimen name="description_header_size">16sp</dimen>
+
+    <dimen name="anim_time">450</dimen>
 </resources>

@@ -15,39 +15,39 @@ import com.example.idscomercial.examen1.datasource.QueryTask;
 
 import com.example.idscomercial.examen1.vm.ReturnDataFromWeb;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
-import com.example.idscomercial.examen1.vm.CrudDatabaseRepositoryCallback;
-import com.example.idscomercial.examen1.vm.ReturnDataFromTask;
+import com.example.idscomercial.examen1.vm.RepositoryCallback;
+import com.example.idscomercial.examen1.vm.ReturnDataFromDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrudDatabaseRepository implements CrudDatabaseRepositoryCallback {
+public class Repository implements RepositoryCallback {
 
-    private static final String LOG_TAG = CrudDatabaseRepository.class.getSimpleName();
+    private static final String LOG_TAG = Repository.class.getSimpleName();
 
-    private static CrudDatabaseRepository sInstance;
+    private static Repository sInstance;
     private Context mContext;
     private DatabaseHelper mDatabase;
 
-    private CrudDatabaseRepository(Context context) {
+    private Repository(Context context) {
         mContext = context;
         mDatabase = new DatabaseHelper(mContext);
     }
 
-    public static CrudDatabaseRepository getInstance(Context mContext) {
+    public static Repository getInstance(Context mContext) {
         if (sInstance == null) {
-            sInstance = new CrudDatabaseRepository(mContext);
+            sInstance = new Repository(mContext);
         }
         return sInstance;
     }
 
     @Override
-    public void readData(ReturnDataFromTask returnToViewModel) {
+    public void readData(ReturnDataFromDatabase returnToViewModel) {
         Cursor[] res = new Cursor[1];
         final List<DataRow>[] bufferList = new List[]{new ArrayList<>()};
         DatosConsultaHolder buffer = new DatosConsultaHolder();
 
-        QueryTask queryTask = new QueryTask(mContext, new TaskInterface() {
+        QueryTask queryTask = new QueryTask(mContext, new DatabaseTaskInterface() {
             @Override
             public void sucessResultPostExecute(String result, Cursor cursor) {
                 res[0] = cursor;
@@ -145,7 +145,7 @@ public class CrudDatabaseRepository implements CrudDatabaseRepositoryCallback {
     }
 
     @Override
-    public void readAllData(Context context, ReturnDataFromTask returnDataFromTask) {
+    public void readAllData(Context context, ReturnDataFromDatabase returnDataFromDatabase) {
         Intent intentToSyncDataFromDB = new Intent(context, DatabaseSyncIntentService.class);
         context.startService(intentToSyncDataFromDB);
     }

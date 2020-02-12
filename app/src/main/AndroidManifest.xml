@@ -32,8 +32,24 @@
             android:name=".ui.CapturaDatosActivity"
             android:label="@string/title_activity_captura_datos"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EnrollmentValidacionActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EnrollmentCodigoAutorizacion"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EnrollmentPerfilActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EnrollmentResidenciaActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EnrollmentUsuarioContrasenaActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EnrollmentTerminacionActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service android:name=".datasource.DatabaseSyncIntentService"
             android:exported="false"/>
+
+        <service android:name=".device.notifications.NotificationIntentService"
+            android:exported="false"/>
+        <receiver android:name=".device.notifications.NotificationReceiver" />
     </application>
 </manifest>

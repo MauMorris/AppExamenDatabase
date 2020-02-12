@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.idscomercial.examen1.R;
-import com.example.idscomercial.examen1.datasource.DatabaseHelper;
 import com.example.idscomercial.examen1.databinding.ActivityLeeDatosBinding;
 import com.example.idscomercial.examen1.ui.adapterutils.DataAdapter;
 import com.example.idscomercial.examen1.vm.LeeDatosViewModel;
-import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 
 public class LeeDatosActivity extends AppCompatActivity implements View.OnClickListener {
 

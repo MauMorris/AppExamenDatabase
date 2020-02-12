@@ -6,7 +6,7 @@ import android.database.Cursor;
 
 import androidx.annotation.Nullable;
 
-import com.example.idscomercial.examen1.repository.TaskInterface;
+import com.example.idscomercial.examen1.repository.DatabaseTaskInterface;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class DatabaseSyncIntentService extends IntentService {
         final List<DataRow>[] bufferList = new List[]{new ArrayList<>()};
         DatosConsultaHolder buffer = new DatosConsultaHolder();
 
-        new QueryTask(getBaseContext(), new TaskInterface() {
+        new QueryTask(getBaseContext(), new DatabaseTaskInterface() {
             @Override
             public void sucessResultPostExecute(String result, Cursor cursor) {
                 res[0] = cursor;

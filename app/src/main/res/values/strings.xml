@@ -6,18 +6,69 @@
     <string name="title_activity_captura_datos">CapturaDatosActivity</string>
 
     <string name="action_settings">Settings</string>
-    <string name="captura_text">Captura Datos</string>
-    <string name="lee_text">Lee Datos</string>
+    <string name="captura_text">Captura</string>
+    <string name="lee_text">Lee</string>
 
-    <string name="nombre_text">Nombre</string>
+    <string name="splash_text">Enrollment\n App</string>
+
     <string name="apellidos_text">Apellidos</string>
     <string name="direccion_text">Dirección</string>
-    <string name="telefono_text">Número Telefónico</string>
-    <string name="mail_text">Mail</string>
-    <string name="fecha_nac_text">Fecha de Nacimiento</string>
     <string name="edo_civil_text">Estado Civil</string>
     <string name="usuario_text">Nombre de Usuario</string>
-    <string name="contraseña_text">Contraseña</string>
 
-    <string name="texto_ayuda_captura_datos">Introduce la siguiente informacion para ayudarte con tu registro</string>
+    <!--captura datos de inicio y validacion -->
+    <string name="header_validacion_text">Vamos a comenzar agregando tu número celular</string>
+    <string name="descripcion_validacion_text">Te enviaremos un código de autorización que deberás validar más adelante</string>
+    <string name="aviso_privacidad_text">Al ingresar tu número celular aceptas nuestro <b>Aviso de Privacidad</b> y el uso de Medios Electrónicos de Identificación</string>
+    <string name="numero_celular_text">Número Celular</string>
+    <!-- Texto ayuda para errores -->
+    <string name="no_informacion_error_text">Necesitamos este dato :(</string>
+    <string name="formato_incorrecto_error_text">El formato es incorrecto: ejemplo (55 1234 5678)</string>
+
+
+    <!-- validacion de codigo-->
+    <string name="header_captura_codigo_autorizacion_text">Validemos el código de autorización que te enviamos</string>
+    <string name="descripcion_captura_codigo_autorizacion_text">Introduce el código que enviamos al numero:</string>
+    <string name="celular_recepcion_codigo_autorizacion_text">55 1234 5678</string>
+    <string name="pregunta_celular_recepcion_codigo_autorizacion_text">¿Es correcto este número celular?</string>
+    <string name="codigo_autorizacion_text">Confirma tu código</string>
+    <string name="enviar_nuevamente_codigo_text">Envía nuevamente el código de autorización</string>
+
+    <string name="main_notification_channel_name">Primary</string>
+    <string name="apply_code_text">Aplicar código</string>
+    <string name="not_apply_text">Ahora no</string>
+
+    <!--captura de perfil o datos personales-->
+    <string name="header_captura_perfil_text">Ahora, nos gustaría saber un poco más de ti</string>
+    <string name="nombre_text">Nombre(s)</string>
+    <string name="primer_apellido_text">Primer Apellido</string>
+    <string name="segundo_apellido_text">Segundo Apellido</string>
+    <string name="fecha_nacimiento_text">Fecha de Nacimiento</string>
+
+
+    <!-- captura de direccion-->
+    <string name="header_captura_direccion_text">Cuéntanos donde vives</string>
+    <string name="calle_text">Calle</string>
+    <string name="numero_exterior_text">No. Exterior</string>
+    <string name="numero_interior_text">No. Interior (opcional)</string>
+    <string name="colonia_text">Colonia</string>
+    <string name="codigo_postal_text">Código Postal</string>
+    <string name="municipio_text">Alcaldía o municipio</string>
+    <string name="estado_text">Estado</string>
+
+
+    <!--captura usuario y contrasenia-->
+    <string name="header_creacion_usuario_text">Para crear tu perfil ingresa tu correo y elige una contraseña</string>
+    <string name="correo_text">Correo electrónico</string>
+    <string name="contraseña_text">Contraseña</string>
+    <string name="ingresa_correo_text">Ingresa tu correo electrónico</string>
+    <string name="ingresa_contrasena_text">Elige tu contraseña (6 digitos)</string>
+
+
+    <!-- fin enrollment -->
+    <string name="header_final_enrollment_text">¡Es todo! Has finalizado tu registro :)</string>
+    <string name="descripcion_final_enrollment_text">Lo que sigue es que validaremos tu información y te responderemos en <b>menos de 5 días hábiles.</b></string>
+    <string name="instrucciones_final_enrollment_text">Despues de comprobar que todo va bien, se habilitarán los servicios de atención personalizada.</string>
+    <string name="explora_app_text">Explora la app</string>
+
 </resources>

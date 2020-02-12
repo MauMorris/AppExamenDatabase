@@ -58,7 +58,7 @@
                 android:id="@+id/fecha_nacimiento_requested_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="@string/fecha_nac_text" />
+                tools:text="@string/fecha_nacimiento_text" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/estado_civil_requested_text_view"
