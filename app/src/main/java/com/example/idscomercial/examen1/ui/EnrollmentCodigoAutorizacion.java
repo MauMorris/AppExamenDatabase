@@ -37,7 +37,6 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
 
         setViews();
         setClickListeners(mBinding);
-        setReceiver();
 
         mViewModel.requestValidCode(context);
     }
@@ -86,10 +85,17 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        setReceiver();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         mShowHandler.removeCallbacks(mShowRunnable);
         mShowHandler.removeCallbacks(mNextRunnable);
+
         unregisterReceiver(receiver);
     }
 
