@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,9 +21,9 @@ import com.example.idscomercial.examen1.databinding.ActivityEnrollmentCodigoAuto
 import com.example.idscomercial.examen1.device.notifications.NotificationReceiver;
 import com.example.idscomercial.examen1.vm.EnrollmentCodigoAutorizacionViewModel;
 
-public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
+public class EnrollmentCodigoAutorizacionActivity extends AppCompatActivity {
 
-    private Context context = EnrollmentCodigoAutorizacion.this;
+    private Context context = EnrollmentCodigoAutorizacionActivity.this;
     private ActivityEnrollmentCodigoAutorizacionBinding mBinding;
     private Handler mShowHandler;
     private EnrollmentCodigoAutorizacionViewModel mViewModel;
@@ -48,6 +50,11 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
             @Override
             public void onChanged(String data) {
                 mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.INVISIBLE);
+                mBinding.nextEnrollmentPerfilFab.setEnabled(true);
+                mBinding.codigoAutorizacionEt.getText().clear();
+
+                Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(context, EnrollmentPerfilActivity.class);
                 startActivity(intent);
             }
@@ -67,10 +74,21 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
 
     private void setClickListeners(ActivityEnrollmentCodigoAutorizacionBinding mBinding) {
         mBinding.nextEnrollmentPerfilFab.setOnClickListener(view -> {
-            mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.VISIBLE);
 
-            mShowHandler.removeCallbacks(mShowRunnable);
-            mViewModel.getDataFromInternet("test", "salary", "age");
+            String codigo = mBinding.codigoAutorizacionEt.getText().toString();
+            boolean validacion = mViewModel.validaNumero(codigo);
+
+            if(validacion){
+                mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.VISIBLE);
+                mBinding.nextEnrollmentPerfilFab.setEnabled(false);
+
+                mShowHandler.removeCallbacks(mShowRunnable);
+                mViewModel.getDataFromInternet("test", "salary", "age");
+
+            } else{
+                mBinding.codigoAutorizacionTil.setError(getString(R.string.no_informacion_error_text));
+
+            }
         });
 
         mBinding.preguntaCelularRecepcionCodigoAutorizacionTv.setOnClickListener(view -> onBackPressed());
@@ -80,6 +98,24 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
 
             mShowHandler.removeCallbacks(mShowRunnable);
             mShowHandler.postDelayed(mShowRunnable, getResources().getInteger(R.integer.service_request_time));
+        });
+
+        mBinding.codigoAutorizacionEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (mBinding.codigoAutorizacionTil.getError() != null) {
+                    mBinding.codigoAutorizacionTil.setError(null);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
         });
     }
 

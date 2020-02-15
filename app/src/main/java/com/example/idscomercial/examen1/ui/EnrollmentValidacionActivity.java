@@ -138,7 +138,7 @@ public class EnrollmentValidacionActivity extends AppCompatActivity {
             mBinding.enrollmentValidacionPb.setVisibility(View.INVISIBLE);
             mBinding.numeroTelefonicoEt.getText().clear();
 
-            Intent intent = new Intent(context, EnrollmentCodigoAutorizacion.class);
+            Intent intent = new Intent(context, EnrollmentCodigoAutorizacionActivity.class);
             intent.putExtra(NUMERO_CELULAR_EXTRA, numeroTelefonico);
 
             startActivity(intent);

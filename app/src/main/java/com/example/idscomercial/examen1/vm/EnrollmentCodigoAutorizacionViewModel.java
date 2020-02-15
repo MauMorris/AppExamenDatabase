@@ -36,4 +36,8 @@ public class EnrollmentCodigoAutorizacionViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public boolean validaNumero(String codigo) {
+        return codigo.length() == 6;
+    }
 }
