@@ -21,10 +21,6 @@
     <string name="descripcion_validacion_text">Te enviaremos un código de autorización que deberás validar más adelante</string>
     <string name="aviso_privacidad_text">Al ingresar tu número celular aceptas nuestro <b>Aviso de Privacidad</b> y el uso de Medios Electrónicos de Identificación</string>
     <string name="numero_celular_text">Número Celular</string>
-    <!-- Texto ayuda para errores -->
-    <string name="no_informacion_error_text">Necesitamos este dato :(</string>
-    <string name="formato_incorrecto_error_text">El formato es incorrecto: ejemplo (55 1234 5678)</string>
-
 
     <!-- validacion de codigo-->
     <string name="header_captura_codigo_autorizacion_text">Validemos el código de autorización que te enviamos</string>
@@ -34,6 +30,7 @@
     <string name="codigo_autorizacion_text">Confirma tu código</string>
     <string name="enviar_nuevamente_codigo_text">Envía nuevamente el código de autorización</string>
 
+    <!--notification text-->
     <string name="main_notification_channel_name">Primary</string>
     <string name="apply_code_text">Aplicar código</string>
     <string name="not_apply_text">Ahora no</string>
@@ -45,7 +42,6 @@
     <string name="segundo_apellido_text">Segundo Apellido</string>
     <string name="fecha_nacimiento_text">Fecha de Nacimiento</string>
 
-
     <!-- captura de direccion-->
     <string name="header_captura_direccion_text">Cuéntanos donde vives</string>
     <string name="calle_text">Calle</string>
@@ -56,7 +52,6 @@
     <string name="municipio_text">Alcaldía o municipio</string>
     <string name="estado_text">Estado</string>
 
-
     <!--captura usuario y contrasenia-->
     <string name="header_creacion_usuario_text">Para crear tu perfil ingresa tu correo y elige una contraseña</string>
     <string name="correo_text">Correo electrónico</string>
@@ -64,11 +59,16 @@
     <string name="ingresa_correo_text">Ingresa tu correo electrónico</string>
     <string name="ingresa_contrasena_text">Elige tu contraseña (6 digitos)</string>
 
-
     <!-- fin enrollment -->
     <string name="header_final_enrollment_text">¡Es todo! Has finalizado tu registro :)</string>
     <string name="descripcion_final_enrollment_text">Lo que sigue es que validaremos tu información y te responderemos en <b>menos de 5 días hábiles.</b></string>
     <string name="instrucciones_final_enrollment_text">Despues de comprobar que todo va bien, se habilitarán los servicios de atención personalizada.</string>
     <string name="explora_app_text">Explora la app</string>
+
+    <!-- Texto ayuda para errores -->
+    <string name="no_informacion_error_text">Necesitamos este dato :(</string>
+    <string name="formato_incorrecto_error_text">El formato es incorrecto: ejemplo (55 1234 5678)</string>
+    <string name="wrong_text">Lo escribiste mal D:</string>
+    <string name="wrong_date">El formato es incorrecto: ejemplo (10/12/1990)</string>
 
 </resources>
