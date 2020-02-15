@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.idscomercial.examen1.R;
 import com.example.idscomercial.examen1.databinding.ActivityEnrollmentValidacionBinding;
 import com.example.idscomercial.examen1.vm.EnrollmentValidacionViewModel;
+import com.example.idscomercial.examen1.vm.validateutils.ValidateDataUtils;
 
 public class EnrollmentValidacionActivity extends AppCompatActivity {
 
@@ -58,17 +59,17 @@ public class EnrollmentValidacionActivity extends AppCompatActivity {
             int validacion = mViewModel.validaNumero(numeroFromET);
 
             switch (validacion) {
-                case EnrollmentValidacionViewModel.NO_DATA:
+                case ValidateDataUtils.NO_DATA:
                     mBinding.numeroTelefonicoTil.setError(null);
                     mBinding.numeroTelefonicoTil.setError(getString(R.string.no_informacion_error_text));
 
                     break;
-                case EnrollmentValidacionViewModel.WRONG_DATA:
+                case ValidateDataUtils.WRONG_DATA:
                     mBinding.numeroTelefonicoTil.setError(null);
                     mBinding.numeroTelefonicoTil.setError(getString(R.string.formato_incorrecto_error_text));
 
                     break;
-                case EnrollmentValidacionViewModel.DATA_OK:
+                case ValidateDataUtils.DATA_OK:
                     numeroTelefonico = mViewModel.returnFormattedNumber(numeroFromET);
 
                     mBinding.enrollmentValidacionPb.setVisibility(View.VISIBLE);
