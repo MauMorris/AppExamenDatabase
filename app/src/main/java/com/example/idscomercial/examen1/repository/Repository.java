@@ -156,11 +156,13 @@ public class Repository implements RepositoryCallback {
             @Override
             public void sucessResultPostExecute(String result, String cursor) {
                 returnDataFromWeb.returnWebData(cursor);
+            Log.d("WEB_REQUEST", result);
             }
 
             @Override
             public void errorResultPostExecute(String error, String cursor) {
                 returnDataFromWeb.returnWebData(cursor);
+                Log.d("WEB_REQUEST", error);
             }
         }, name, salary, age);
         mTask.execute("");

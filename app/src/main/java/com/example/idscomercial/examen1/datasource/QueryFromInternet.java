@@ -21,6 +21,8 @@ import java.net.HttpURLConnection;
 
 
 public class QueryFromInternet extends AsyncTask<String, Void, String> {
+    public static final String LOG_TAG = QueryFromInternet.class.getSimpleName();
+
     private Context mContext;
     private WebTaskInterface mTaskInterface;
     private String name, salary, age;
@@ -72,7 +74,9 @@ public class QueryFromInternet extends AsyncTask<String, Void, String> {
             connection.connect();
 
             int responseCode = connection.getResponseCode();
-            Log.d("LOG REQUEST", responseCode + "result");
+
+            Log.d(LOG_TAG, responseCode + " result");
+
             stream = connection.getInputStream();
             result = readStream(stream);
         } catch (ProtocolException e) {
@@ -94,6 +98,8 @@ public class QueryFromInternet extends AsyncTask<String, Void, String> {
     }
 
     private String readStream(InputStream stream) throws IOException {
+
+        Log.d(LOG_TAG, stream.toString());
 
         BufferedReader br = new BufferedReader(new InputStreamReader(stream,"utf-8"));
         String line;

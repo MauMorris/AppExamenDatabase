@@ -10,19 +10,6 @@
         android:fitsSystemWindows="true"
         tools:context="com.example.idscomercial.examen1.MainActivity">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_anim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/splash_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_imageAssetsFolder="assets"
-            app:lottie_fileName="lf20_fD2Mnd.json"
-            app:lottie_loop="true" />
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/splash_text_view"
             android:layout_width="wrap_content"
@@ -37,7 +24,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.37" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/splash_text_view"
+            app:lottie_autoPlay="true"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_fileName="lf20_fD2Mnd.json"
+            app:lottie_loop="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
