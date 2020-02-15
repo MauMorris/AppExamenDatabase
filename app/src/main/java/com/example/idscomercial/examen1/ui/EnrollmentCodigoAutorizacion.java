@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.idscomercial.examen1.R;
@@ -37,8 +38,20 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
 
         setViews();
         setClickListeners(mBinding);
+        subscribeUI(mViewModel);
 
         mViewModel.requestValidCode(context);
+    }
+
+    private void subscribeUI(EnrollmentCodigoAutorizacionViewModel mViewModel) {
+        mViewModel.getWebLiveData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String data) {
+                mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(context, EnrollmentPerfilActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setReceiver() {
@@ -56,10 +69,8 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
         mBinding.nextEnrollmentPerfilFab.setOnClickListener(view -> {
             mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.VISIBLE);
 
-            mShowHandler.removeCallbacks(mNextRunnable);
             mShowHandler.removeCallbacks(mShowRunnable);
-            mShowHandler.postDelayed(mNextRunnable, getResources().getInteger(R.integer.service_request_time));
-
+            mViewModel.getDataFromInternet("test", "salary", "age");
         });
 
         mBinding.preguntaCelularRecepcionCodigoAutorizacionTv.setOnClickListener(view -> onBackPressed());
@@ -94,7 +105,6 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mShowHandler.removeCallbacks(mShowRunnable);
-        mShowHandler.removeCallbacks(mNextRunnable);
 
         unregisterReceiver(receiver);
     }
@@ -103,7 +113,6 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         mShowHandler.removeCallbacks(mShowRunnable);
-        mShowHandler.removeCallbacks(mNextRunnable);
     }
 
     private final Runnable mShowRunnable = new Runnable() {
@@ -111,15 +120,6 @@ public class EnrollmentCodigoAutorizacion extends AppCompatActivity {
         public void run() {
             mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.INVISIBLE);
             mViewModel.requestValidCode(context);
-        }
-    };
-
-    private final Runnable mNextRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mBinding.enrollmentCodigoAutorizacionPb.setVisibility(View.INVISIBLE);
-            Intent intent = new Intent(context, EnrollmentPerfilActivity.class);
-            startActivity(intent);
         }
     };
 }
