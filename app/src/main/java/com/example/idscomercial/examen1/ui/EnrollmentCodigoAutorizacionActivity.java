@@ -23,11 +23,13 @@ import com.example.idscomercial.examen1.vm.EnrollmentCodigoAutorizacionViewModel
 
 public class EnrollmentCodigoAutorizacionActivity extends AppCompatActivity {
 
+    public static final String CELULAR_EXTRA = "celular_codigo_autorizacion";
     private Context context = EnrollmentCodigoAutorizacionActivity.this;
     private ActivityEnrollmentCodigoAutorizacionBinding mBinding;
     private Handler mShowHandler;
     private EnrollmentCodigoAutorizacionViewModel mViewModel;
     private NotificationReceiver receiver;
+    private String dataCelular;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class EnrollmentCodigoAutorizacionActivity extends AppCompatActivity {
                 Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, EnrollmentPerfilActivity.class);
+                intent.putExtra(CELULAR_EXTRA, dataCelular);
                 startActivity(intent);
             }
         });
@@ -124,8 +127,11 @@ public class EnrollmentCodigoAutorizacionActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if(intent.hasExtra(EnrollmentValidacionActivity.NUMERO_CELULAR_EXTRA)){
-            String data = intent.getStringExtra(EnrollmentValidacionActivity.NUMERO_CELULAR_EXTRA);
-            String set = data.substring(0,2) + " " + data.substring(2,6) + " " + data.substring(6);
+            dataCelular = intent.getStringExtra(EnrollmentValidacionActivity.NUMERO_CELULAR_EXTRA);
+
+            String set = dataCelular.substring(0,2) + " " +
+                    dataCelular.substring(2,6) + " " +
+                    dataCelular.substring(6);
 
             mBinding.celularRecepcionCodigoAutorizacionTv.setText(set);
         }
