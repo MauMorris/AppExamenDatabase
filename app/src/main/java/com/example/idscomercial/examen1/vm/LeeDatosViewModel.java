@@ -38,7 +38,7 @@ public class LeeDatosViewModel {
     public MutableLiveData<String> getWebLiveData(){return mWebLiveData;}
 
     public void getDataFromInternet(String test, String salary, String age) {
-        mCrud.getDataFromWeb(test, salary, age, new ReturnDataFromWeb(){
+        mCrud.getDataFromWebCodigoAutorizacion(test, salary, age, new ReturnDataFromWeb(){
 
             @Override
             public void returnWebData(String data) {

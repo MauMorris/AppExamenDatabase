@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.EnrollmentValidacionActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.EnrollmentCodigoAutorizacion"
+        <activity android:name=".ui.EnrollmentCodigoAutorizacionActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.EnrollmentPerfilActivity"
             android:theme="@style/AppTheme.NoActionBar"/>

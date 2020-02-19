@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,13 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class EnrollmentPerfilActivity extends AppCompatActivity {
 
-    public static final String PERFIL_EXTRA = "perfil_nombre";
+    public static final String NOMBRE_EXTRA = "nombre_perfil";
+    public static final String PRIMER_APELLIDO_EXTRA = "primer_apellido_perfil";
+    public static final String SEGUNDO_APELLIDO_EXTRA = "segundo_apellido_perfil";
+    public static final String FECHA_NACIMIENTO_EXTRA = "fecha_nacimiento_perfil";
+
+    private String celular;
+
     Context context = EnrollmentPerfilActivity.this;
 
     private ActivityEnrollmentPerfilBinding mBinding;
@@ -37,6 +44,12 @@ public class EnrollmentPerfilActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(EnrollmentPerfilViewModel.class);
 
         setListeners(mBinding);
+
+        Intent intent = getIntent();
+        if(intent.hasExtra(EnrollmentCodigoAutorizacionActivity.CELULAR_EXTRA)){
+            celular = intent.getStringExtra(EnrollmentCodigoAutorizacionActivity.CELULAR_EXTRA);
+            Toast.makeText(context, celular, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setListeners(ActivityEnrollmentPerfilBinding mBinding) {
@@ -109,6 +122,13 @@ public class EnrollmentPerfilActivity extends AppCompatActivity {
 
                 if(validaFlag[0] & validaFlag[1] & validaFlag[2] & validaFlag[3]){
                     Intent intent = new Intent(context, EnrollmentResidenciaActivity.class);
+
+                    intent.putExtra(EnrollmentCodigoAutorizacionActivity.CELULAR_EXTRA, celular);
+                    intent.putExtra(NOMBRE_EXTRA, nombreFromET);
+                    intent.putExtra(PRIMER_APELLIDO_EXTRA, primerApellidoFromET);
+                    intent.putExtra(SEGUNDO_APELLIDO_EXTRA, segundoApellidoFromET);
+                    intent.putExtra(FECHA_NACIMIENTO_EXTRA, fechaFromET);
+
                     startActivity(intent);
                 }
             }

@@ -29,11 +29,15 @@ public class EnrollmentCodigoAutorizacionViewModel extends AndroidViewModel {
     public MutableLiveData<String> getWebLiveData(){return mWebLiveData;}
 
     public void getDataFromInternet(String test, String salary, String age) {
-        mRepo.getDataFromWeb(test, salary, age, new ReturnDataFromWeb(){
+        mRepo.getDataFromWebCodigoAutorizacion(test, salary, age, new ReturnDataFromWeb(){
             @Override
             public void returnWebData(String data) {
                 mWebLiveData.setValue(data);
             }
         });
+    }
+
+    public boolean validaNumero(String codigo) {
+        return codigo.length() == 6;
     }
 }
