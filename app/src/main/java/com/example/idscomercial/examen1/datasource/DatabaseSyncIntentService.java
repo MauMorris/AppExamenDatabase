@@ -6,6 +6,7 @@ import android.database.Cursor;
 
 import androidx.annotation.Nullable;
 
+import com.example.idscomercial.examen1.datasource.database.DatabaseContract;
 import com.example.idscomercial.examen1.repository.DatabaseTaskInterface;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 
@@ -25,7 +26,7 @@ public class DatabaseSyncIntentService extends IntentService {
         final List<DataRow>[] bufferList = new List[]{new ArrayList<>()};
         DatosConsultaHolder buffer = new DatosConsultaHolder();
 
-        new QueryTask(getBaseContext(), new DatabaseTaskInterface() {
+        new QueryDatabaseTask(getBaseContext(), new DatabaseTaskInterface() {
             @Override
             public void sucessResultPostExecute(String result, Cursor cursor) {
                 res[0] = cursor;
@@ -80,6 +81,6 @@ public class DatabaseSyncIntentService extends IntentService {
             public void errorResultPostExecute(String error, Cursor cursor) {
 
             }
-        }, QueryTask.READ_ALL).execute("");
+        }, QueryDatabaseTask.READ_ALL).execute("");
     }
 }

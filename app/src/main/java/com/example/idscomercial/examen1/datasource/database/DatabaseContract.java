@@ -1,4 +1,4 @@
-package com.example.idscomercial.examen1.datasource;
+package com.example.idscomercial.examen1.datasource.database;
 
 public class DatabaseContract {
     public static final String DATABASE_NAME = "examen.db";

@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 
+import com.example.idscomercial.examen1.datasource.database.DatabaseHelper;
 import com.example.idscomercial.examen1.repository.DatabaseTaskInterface;
 
-public class QueryTask extends AsyncTask<String, Void, Cursor> {
+public class QueryDatabaseTask extends AsyncTask<String, Void, Cursor> {
     public static final String READ_ALL = "real_all_data";
     public static final String DELETE_ALL = "delete_all_data";
     public static final String INSERT_DATA = "insert_data_by_id";
@@ -17,7 +18,7 @@ public class QueryTask extends AsyncTask<String, Void, Cursor> {
     private String mQuery;
     private DatabaseHelper mDatabase;
 
-    public QueryTask(Context context, DatabaseTaskInterface databaseTaskInterface, String query) {
+    public QueryDatabaseTask(Context context, DatabaseTaskInterface databaseTaskInterface, String query) {
         mContext = context;
         mDatabase = new DatabaseHelper(context);
 

@@ -7,18 +7,20 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.idscomercial.examen1.datasource.DataRow;
-import com.example.idscomercial.examen1.datasource.DatabaseContract;
-import com.example.idscomercial.examen1.datasource.DatabaseHelper;
+import com.example.idscomercial.examen1.datasource.database.DatabaseContract;
+import com.example.idscomercial.examen1.datasource.database.DatabaseHelper;
 import com.example.idscomercial.examen1.datasource.DatabaseSyncIntentService;
-import com.example.idscomercial.examen1.datasource.QueryFromInternet;
-import com.example.idscomercial.examen1.datasource.QueryTask;
+import com.example.idscomercial.examen1.datasource.QueryInternetTask;
+import com.example.idscomercial.examen1.datasource.QueryDatabaseTask;
 
+import com.example.idscomercial.examen1.datasource.server.UrlConstants;
 import com.example.idscomercial.examen1.vm.ReturnDataFromWeb;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 import com.example.idscomercial.examen1.vm.RepositoryCallback;
 import com.example.idscomercial.examen1.vm.ReturnDataFromDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Repository implements RepositoryCallback {
@@ -47,7 +49,7 @@ public class Repository implements RepositoryCallback {
         final List<DataRow>[] bufferList = new List[]{new ArrayList<>()};
         DatosConsultaHolder buffer = new DatosConsultaHolder();
 
-        QueryTask queryTask = new QueryTask(mContext, new DatabaseTaskInterface() {
+        QueryDatabaseTask queryDatabaseTask = new QueryDatabaseTask(mContext, new DatabaseTaskInterface() {
             @Override
             public void sucessResultPostExecute(String result, Cursor cursor) {
                 res[0] = cursor;
@@ -110,9 +112,9 @@ public class Repository implements RepositoryCallback {
 
                 returnToViewModel.returnData(buffer);
             }
-        }, QueryTask.READ_ALL);
+        }, QueryDatabaseTask.READ_ALL);
         
-        queryTask.execute("");
+        queryDatabaseTask.execute("");
     }
 
     @Override
@@ -151,8 +153,22 @@ public class Repository implements RepositoryCallback {
     }
 
     @Override
-    public void getDataFromWeb(String name, String salary, String age, ReturnDataFromWeb returnDataFromWeb) {
-        QueryFromInternet mTask = new QueryFromInternet(mContext, new WebTaskInterface() {
+    public void getDataFromWebCodigoAutorizacion(String name, String salary, String age,
+                                                 ReturnDataFromWeb returnDataFromWeb) {
+        String urlPath = UrlConstants.DUMMY_REST_SALARY;
+
+        HashMap<String, String> header = new HashMap<>();
+        header.put("Content-Type", "application/json");
+
+        String requestType = "POST";
+
+        String json = "{" +
+                "\"name\":\"test\"," +
+                "\"salary\":\"123\"," +
+                "\"age\":\"23\"" +
+                "}";
+
+        QueryInternetTask mTask = new QueryInternetTask(mContext, new WebTaskInterface() {
             @Override
             public void sucessResultPostExecute(String result, String cursor) {
                 returnDataFromWeb.returnWebData(cursor);
@@ -164,7 +180,7 @@ public class Repository implements RepositoryCallback {
                 returnDataFromWeb.returnWebData(cursor);
                 Log.d("WEB_REQUEST", error);
             }
-        }, name, salary, age);
+        }, urlPath, header, requestType, json);
         mTask.execute("");
     }
 }
