@@ -23,7 +23,7 @@
         <activity
             android:name=".ui.LeeCapturaActivity"
             android:label="@string/title_activity_lee_captura"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Enrollment" />
         <activity
             android:name=".ui.LeeDatosActivity"
             android:label="@string/title_activity_lee_datos"
@@ -44,6 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.EnrollmentTerminacionActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.SettingsActivity"/>
 
         <service android:name=".datasource.DatabaseSyncIntentService"
             android:exported="false"/>

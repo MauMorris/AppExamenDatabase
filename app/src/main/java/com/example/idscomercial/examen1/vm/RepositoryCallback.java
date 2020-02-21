@@ -13,4 +13,6 @@ public interface RepositoryCallback {
     void readAllData(Context context, ReturnDataFromDatabase returnDataFromDatabase);
 
     void getDataFromWebCodigoAutorizacion(String name, String salary, String age, ReturnDataFromWeb returnDataFromWeb);
+
+    void getEnrollmentPreferences(Context context, ReturnDataFromPreferences dataFromPreferences);
 }
