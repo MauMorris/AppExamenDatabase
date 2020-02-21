@@ -13,7 +13,9 @@ import com.example.idscomercial.examen1.datasource.DatabaseSyncIntentService;
 import com.example.idscomercial.examen1.datasource.QueryInternetTask;
 import com.example.idscomercial.examen1.datasource.QueryDatabaseTask;
 
+import com.example.idscomercial.examen1.datasource.preferences.EnrollmentPreferences;
 import com.example.idscomercial.examen1.datasource.server.UrlConstants;
+import com.example.idscomercial.examen1.vm.ReturnDataFromPreferences;
 import com.example.idscomercial.examen1.vm.ReturnDataFromWeb;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 import com.example.idscomercial.examen1.vm.RepositoryCallback;
@@ -182,5 +184,11 @@ public class Repository implements RepositoryCallback {
             }
         }, urlPath, header, requestType, json);
         mTask.execute("");
+    }
+
+    @Override
+    public void getEnrollmentPreferences(Context context, ReturnDataFromPreferences returnDataFromPreferences) {
+        boolean status = EnrollmentPreferences.getEnrollmentDetails(context);
+        returnDataFromPreferences.returnData(status);
     }
 }

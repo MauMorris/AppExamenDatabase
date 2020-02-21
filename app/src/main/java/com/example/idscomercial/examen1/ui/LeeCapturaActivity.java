@@ -8,6 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +19,8 @@ import com.example.idscomercial.examen1.databinding.ActivityLeeCapturaBinding;
 import com.example.idscomercial.examen1.vm.datareturnutils.DatosConsultaHolder;
 import com.example.idscomercial.examen1.ui.modalutils.ModalDialogs;
 import com.example.idscomercial.examen1.vm.LeeCapturaViewModel;
+
+import java.util.Objects;
 
 public class LeeCapturaActivity extends AppCompatActivity implements View.OnClickListener {
     //Cada LOG_TAG que aparezca en el codigo es para el taggeo de los flujos que recorre el usuario
@@ -29,14 +34,11 @@ public class LeeCapturaActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lee_captura);
-        Log.d(LOG_TAG, " db: crea activity " + LOG_TAG);
 
         mViewModel = new LeeCapturaViewModel(LeeCapturaActivity.this);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_lee_captura);
+
+        Objects.requireNonNull(getSupportActionBar()).setElevation(0f);
 
         setListeners(mDataBinding);
         subscribeUI(mViewModel);
@@ -83,6 +85,26 @@ public class LeeCapturaActivity extends AppCompatActivity implements View.OnClic
     public void onBackPressed() {
         super.onBackPressed();
         Log.d(LOG_TAG, " db: presiona back: elimina " + LOG_TAG);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.action_settings){
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void setNewActivity(Class<?> cls) {

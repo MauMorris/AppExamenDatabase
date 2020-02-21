@@ -6,7 +6,7 @@
 
     <dimen name="padding_layout">25dp</dimen>
     <dimen name="splash_text_size">26sp</dimen>
-    <dimen name="height_button">50dp</dimen>
+    <dimen name="height_button">90dp</dimen>
     <dimen name="width_button">160dp</dimen>
 
     <dimen name="text_result_size">14sp</dimen>

@@ -6,6 +6,9 @@ import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,8 +16,10 @@ import android.view.animation.AnimationUtils;
 
 import com.example.idscomercial.examen1.databinding.ActivityMainBinding;
 import com.example.idscomercial.examen1.ui.EnrollmentValidacionActivity;
+import com.example.idscomercial.examen1.ui.LeeCapturaActivity;
 import com.example.idscomercial.examen1.ui.callbacks.FinishAnimationListener;
 import com.example.idscomercial.examen1.ui.callbacks.MainActivityAnimation;
+import com.example.idscomercial.examen1.vm.MainViewModel;
 
 public class MainActivity extends AppCompatActivity implements FinishAnimationListener{
     //Cada LOG_TAG que aparezca en el codigo es para el taggeo de los flujos que recorre el usuario
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements FinishAnimationLi
     private MainActivityAnimation mMainAnimation;
     private Context mContext;
     private ActivityMainBinding mBinding;
+    private MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +44,30 @@ public class MainActivity extends AppCompatActivity implements FinishAnimationLi
         mShowHandler = new Handler();
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         setAnims();
+        subscribeUI(mViewModel);
     }
 
     private void setAnims() {
         moveText = AnimationUtils.loadAnimation(mContext, R.anim.move_text);
         showAnim = AnimationUtils.loadAnimation(mContext, R.anim.show_view);
+    }
+
+    private void subscribeUI(MainViewModel mViewModel) {
+        mViewModel.getWebLiveData().observe(this, aBoolean -> {
+            Intent next;
+
+            if(aBoolean){
+                next = new Intent(mContext, LeeCapturaActivity.class);
+            } else{
+                next = new Intent(mContext, EnrollmentValidacionActivity.class);
+            }
+
+            startActivity(next);
+            finish();
+        });
     }
 
     @Override
@@ -93,22 +116,18 @@ public class MainActivity extends AppCompatActivity implements FinishAnimationLi
             mBinding.lottieAnim.setAnimation(showAnim);
             Log.d(LOG_TAG, " db: inicio de consulta de data");
 
-            delayedShow(getResources().getInteger(R.integer.next_layout_delay_milis));
+            try{
+
+                mShowHandler.removeCallbacks(mIntroRunnable);
+                mShowHandler.removeCallbacks(mShowRunnable);
+
+                mShowHandler.postDelayed(mShowRunnable,
+                        getResources().getInteger(R.integer.next_layout_delay_milis));
+            } catch(Exception e){
+                Log.d(LOG_TAG, " db: no se pudo crear la base de datos");
+            }
         }
     };
-
-    private void delayedShow(int delay){
-        try{
-            Log.d(LOG_TAG, " db: base de datos creada");
-
-            mShowHandler.removeCallbacks(mIntroRunnable);
-            mShowHandler.removeCallbacks(mShowRunnable);
-
-            mShowHandler.postDelayed(mShowRunnable, delay);
-        } catch(Exception e){
-            Log.d(LOG_TAG, " db: no se pudo crear la base de datos");
-        }
-    }
 
     private final Runnable mShowRunnable = new Runnable() {
         @Override
@@ -119,9 +138,6 @@ public class MainActivity extends AppCompatActivity implements FinishAnimationLi
 
     @Override
     public void finishedTime() {
-        Intent next = new Intent(mContext, EnrollmentValidacionActivity.class);
-
-        startActivity(next);
-        finish();
+        mViewModel.getActivateEnrollmentStatus(mContext);
     }
 }

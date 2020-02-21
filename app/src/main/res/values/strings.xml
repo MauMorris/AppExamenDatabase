@@ -5,7 +5,7 @@
     <string name="title_activity_lee_datos">LeeDatosActivity</string>
     <string name="title_activity_captura_datos">CapturaDatosActivity</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configuracion</string>
     <string name="captura_text">Captura</string>
     <string name="lee_text">Lee</string>
 
@@ -70,5 +70,9 @@
     <string name="formato_incorrecto_error_text">El formato es incorrecto: ejemplo (55 1234 5678)</string>
     <string name="wrong_text">Lo escribiste mal D:</string>
     <string name="wrong_date">El formato es incorrecto: ejemplo (10/12/1990)</string>
+    <string name="pref_activate_key">activate_in_enrollment</string>
+    <string name="pref_enable_activate_status_false">No activo</string>
+    <string name="pref_enable_activate_status_true">Activo</string>
+    <string name="pref_enable_activate_status_label">Estatus de activacion</string>
 
 </resources>
